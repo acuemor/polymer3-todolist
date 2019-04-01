@@ -11,21 +11,38 @@ class AddItem extends LitElement {
 	constructor() {
 		super();
 		this.todoItem = '';
+		const storedTodoList = localStorage.getItem('todo-list');
+		this.todoList = storedTodoList === null ? [] : JSON.parse(storedTodoList);
 	}
 
 	inputKeyPress(e) {
 		if(e.keyCode === 13) {
-			// call add item function
+			this.onAddItem();
 		} else {
 			this.todoItem = e.target.value;
 		}
 		console.log(this.todoItem);
 	}
 
+	onAddItem() {
+		if (this.todoItem.length > 0) {
+			this.todoList.push(
+				{
+				  id: new Date().valueOf(),
+				  item: this.todoItem,
+				  done: false
+				}
+			  );
+			  localStorage.setItem('todo-list', JSON.stringify(this.todoList));
+			  this.todoItem = '';
+		}	
+	}
+
 	render() {
 		return html`
 		<div>
 			<input .value=${this.todoItem} @keyup="${this.inputKeyPress}" />
+			<button @click="${this.onAddItem}">Add Item </button>
 		</div>
 		`;
 	}
