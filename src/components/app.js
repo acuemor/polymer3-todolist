@@ -1,4 +1,5 @@
 import { LitElement, html } from '@polymer/lit-element';
+import './add-item';
 
 class TodoApp extends LitElement {
 	static get properties() {
@@ -13,7 +14,8 @@ class TodoApp extends LitElement {
 	}
 
 	render() {
-		return html`<p>Hello todo app</p>`;
+		return html`<p>Hello todo app</p>
+		<add-item></add-item>`;
 	}
 }
 
