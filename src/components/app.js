@@ -15,6 +15,13 @@ class TodoApp extends LitElement {
 		this.todoList = list === null ? [] : list;
 	}
 
+	firstUpdated() {
+		this.addEventListener('add-item', (e) => {
+			this.todoList = e.detail.todoList;
+			this.requestUpdate();
+		})
+	}
+
 	render() {
 		return html`<p>Hello todo app</p>
 		<add-item></add-item>
