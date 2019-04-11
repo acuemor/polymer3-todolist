@@ -1,5 +1,6 @@
 import { LitElement, html} from '@polymer/lit-element';
 import { repeat } from 'lit-html/directives/repeat';
+import './todo-item';
 
 class ListItems extends LitElement {
 	static get properties() {
@@ -15,7 +16,7 @@ class ListItems extends LitElement {
 
 	render() {
 		return html`
-			<ul>${repeat(this.todoList, (todoItem) => html`<li>${todoItem.item}</li>`)}</ul>
+			<ul>${repeat(this.todoList, (todoItem) => html`<todo-item todoItem=${JSON.stringify(todoItem)}></todo-item>`)}</ul>
 		`;
 	}
 } 
