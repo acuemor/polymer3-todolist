@@ -15,8 +15,25 @@ class TodoItem extends LitElement {
 	render() {
 		return html`
 			<li>${this.todoItem.item}</li>
+			<div>
+				<button @click="${this.onRemove}">
+					<strong>X</strong>
+				</button>
+			</div>
 		`;
 	}
+
+	onRemove() {
+		this.dispatchEvent(new CustomEvent('remove-item', {
+			bubbles: true,
+			composed: true,
+			detail: {
+			  item: this.todoItem.id
+			}
+		  }
+		));    
+	  }
+
 }
 
 customElements.define('todo-item', TodoItem);
